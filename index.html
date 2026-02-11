@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎂 촛불 끄셈 ㅋㅋ - 생일 케이크 보내기</title>
-  <meta name="description" content="생일 케이크 만들어서 보내기! 후~ 불어서 촛불 꺼봐 🔥" />
+  <title>🎂 촛불 끄셈 ㅋㅋ - 생일 케이크 만들어서 보내기</title>
+  <meta name="description" content="생일 케이크 만들어서 링크로 보내자! 마이크로 후~ 불면 촛불이 꺼지고, 자이로센서로 불꽃이 흔들리는 인터랙티브 생일 축하 웹앱" />
   <meta property="og:title" content="🎂 촛불 끄셈 ㅋㅋ" />
   <meta property="og:description" content="생일 케이크 만들어서 링크로 보내자! 후~ 불어서 촛불 끄기 🎉" />
   <meta property="og:type" content="website" />
@@ -14,52 +14,383 @@
     @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: #FFF8EE;
       font-family: 'Gaegu', cursive;
       color: #3D2B1F;
+      line-height: 1.7;
     }
-    .container {
+    .hero {
       text-align: center;
-      padding: 40px 24px;
-      max-width: 420px;
+      padding: 60px 20px 40px;
+      position: relative;
+      overflow: hidden;
     }
-    .cake { font-size: 80px; margin-bottom: 16px; }
-    h1 { font-size: 36px; margin-bottom: 12px; color: #E8722A; }
-    p { font-size: 20px; margin-bottom: 32px; color: #6B5344; line-height: 1.6; }
-    .btn {
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(232,114,42,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-cake { font-size: 90px; margin-bottom: 12px; display: block; }
+    .hero h1 { font-size: 42px; color: #E8722A; margin-bottom: 8px; }
+    .hero .subtitle { font-size: 22px; color: #6B5344; margin-bottom: 32px; }
+    .cta-btn {
       display: inline-block;
-      padding: 16px 40px;
+      padding: 18px 48px;
       background: #E8722A;
       color: #FFF8EE;
       font-family: 'Gaegu', cursive;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
-      border: none;
-      border-radius: 40px;
+      border: none; border-radius: 40px;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 4px 0 #C45A1A;
+      box-shadow: 0 5px 0 #C45A1A;
       transition: all 0.15s;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #C45A1A; }
-    .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #C45A1A; }
-    .footer { margin-top: 48px; font-size: 14px; color: #A89080; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #C45A1A; }
+    .cta-btn:active { transform: translateY(2px); box-shadow: 0 3px 0 #C45A1A; }
+    .section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .section h2 {
+      font-size: 30px;
+      color: #E8722A;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .section p {
+      font-size: 19px;
+      color: #6B5344;
+      margin-bottom: 16px;
+    }
+    .divider {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 28px;
+      opacity: 0.3;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .feature-card {
+      background: #FFFDF8;
+      border: 2px solid #3D2B1F;
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 3px 3px 0 rgba(61,43,31,0.12);
+    }
+    .feature-card .icon { font-size: 40px; margin-bottom: 10px; display: block; }
+    .feature-card h3 { font-size: 20px; color: #E8722A; margin-bottom: 8px; }
+    .feature-card p { font-size: 16px; color: #6B5344; margin: 0; }
+    .steps { counter-reset: step; margin-top: 24px; }
+    .step {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 24px;
+      background: #FFFDF8;
+      border: 2px solid #D4A535;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 3px 3px 0 rgba(212,165,53,0.15);
+    }
+    .step-num {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: #D4A535;
+      color: #FFF8EE;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700;
+      border: 2px solid #3D2B1F;
+    }
+    .step-num::before { content: counter(step); }
+    .step-content h3 { font-size: 20px; color: #3D2B1F; margin-bottom: 4px; }
+    .step-content p { font-size: 17px; color: #6B5344; margin: 0; }
+    .faq-item {
+      background: #FFFDF8;
+      border: 2px solid #8FA77A;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 3px 3px 0 rgba(143,167,122,0.15);
+    }
+    .faq-item h3 { font-size: 19px; color: #3D2B1F; margin-bottom: 8px; }
+    .faq-item h3::before { content: 'Q. '; color: #8FA77A; font-weight: 700; }
+    .faq-item p { font-size: 17px; color: #6B5344; margin: 0; }
+    .faq-item p::before { content: 'A. '; color: #E8722A; font-weight: 700; }
+    .age-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 20px;
+      border: 2px solid #3D2B1F;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .age-table th {
+      background: #E8722A;
+      color: #FFF8EE;
+      padding: 12px 16px;
+      font-size: 18px;
+      text-align: left;
+    }
+    .age-table td {
+      padding: 12px 16px;
+      font-size: 17px;
+      color: #6B5344;
+      border-top: 1px solid #E8D5C4;
+    }
+    .age-table tr:nth-child(even) td { background: #FFF8EE; }
+    .age-table tr:nth-child(odd) td { background: #FFFDF8; }
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #3D2B1F;
+      color: #D4C4B4;
+      font-size: 15px;
+    }
+    .footer a { color: #D4A535; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-links { margin-top: 12px; }
+    .footer-links a { margin: 0 12px; }
+    .stamp {
+      display: inline-block; padding: 6px 20px;
+      border: 3px solid #E8722A; border-radius: 50%;
+      transform: rotate(-3deg);
+      box-shadow: inset 0 0 0 2px rgba(232,114,42,0.3);
+      font-size: 16px; color: #E8722A; font-weight: 700;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 32px; }
+      .hero .subtitle { font-size: 18px; }
+      .cta-btn { padding: 14px 36px; font-size: 20px; }
+      .section h2 { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="cake">🎂</div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-cake">🎂</span>
     <h1>촛불 끄셈 ㅋㅋ</h1>
-    <p>생일 케이크 만들어서<br>링크로 보내자!<br>후~ 불어서 촛불 끄기 🔥</p>
-    <a href="/birthday-cake/" class="btn">🎂 케이크 만들러 가기</a>
-    <div class="footer">
-      <p>마이크로 후~ 불면 촛불이 꺼져!</p>
-      <p style="margin-top: 8px;">자이로센서로 불꽃이 흔들려 🕯️</p>
+    <p class="subtitle">생일 케이크 만들어서 링크로 보내자!<br>마이크로 후~ 불면 촛불이 꺼져 🔥</p>
+    <a href="/birthday-cake/" class="cta-btn">🎂 케이크 만들러 가기</a>
+  </div>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- 소개 -->
+  <div class="section">
+    <h2>🎉 이게 뭔데?</h2>
+    <p>"촛불 끄셈 ㅋㅋ"은 생일 축하를 위한 인터랙티브 웹앱입니다. 이름과 나이를 입력하면 예쁜 생일 케이크가 만들어지고, 링크를 보내면 상대방이 실제로 마이크에 후~ 불어서 촛불을 끌 수 있어요!</p>
+    <p>앱 설치 없이 링크만 보내면 되니까, 카카오톡이나 문자로 간편하게 생일 축하를 전할 수 있습니다. 멀리 있는 친구한테도 케이크를 보낼 수 있는 거죠!</p>
+    <p>2026년 트렌드인 따뜻한 레트로 감성의 아날로그 디자인으로, 손으로 그린 듯한 스타일과 빈티지한 색감이 특징이에요.</p>
+  </div>
+
+  <div class="divider">🕯️ 🕯️ 🕯️</div>
+
+  <!-- 기능 소개 -->
+  <div class="section">
+    <h2>✨ 주요 기능</h2>
+    <div class="features">
+      <div class="feature-card">
+        <span class="icon">🎤</span>
+        <h3>후~ 불어서 끄기</h3>
+        <p>마이크에 실제로 바람을 불면 촛불이 하나씩 꺼집니다. 세게 불수록 빨리 꺼져요!</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">📱</span>
+        <h3>자이로센서 반응</h3>
+        <p>핸드폰을 기울이면 촛불의 불꽃이 실시간으로 흔들립니다. 기울기에 따라 연기도 같이 흘러가요!</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🔗</span>
+        <h3>링크 공유</h3>
+        <p>앱 설치 없이 링크만 보내면 끝! 카카오톡, 문자, SNS 어디든 공유할 수 있어요.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🎨</span>
+        <h3>나이별 테마</h3>
+        <p>나이에 따라 케이크 디자인이 달라집니다. 아기부터 할아버지까지, 각 나이대에 맞는 특별한 케이크!</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">💌</span>
+        <h3>비밀 메시지</h3>
+        <p>촛불을 다 끄면 나타나는 비밀 메시지를 숨겨두세요. 특별한 한마디를 전할 수 있어요!</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">💨</span>
+        <h3>B급 연기 효과</h3>
+        <p>촛불을 끄면 초 개수에 따라 연기가 모락모락! 나이가 많으면 "화재 아닙니다" 경보가?!</p>
+      </div>
     </div>
   </div>
+
+  <div class="divider">🎈 🎈 🎈</div>
+
+  <!-- 사용 방법 -->
+  <div class="section">
+    <h2>📖 사용 방법</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>이름과 나이 입력</h3>
+          <p>생일인 사람의 이름과 나이를 입력하세요. 비밀 메시지도 넣을 수 있어요! 메시지는 촛불을 다 끈 후에 공개됩니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>케이크 미리보기</h3>
+          <p>나이에 맞는 예쁜 케이크가 만들어집니다. 마음에 들면 링크를 복사해서 생일인 친구에게 보내세요!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>링크 보내기</h3>
+          <p>복사된 링크를 카카오톡, 문자, SNS 등으로 보내세요. 받는 사람은 별도 앱 설치 없이 바로 열 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>후~ 불어서 촛불 끄기</h3>
+          <p>링크를 연 사람은 화면을 터치해서 불을 붙이고, 마이크에 후~ 불어서 촛불을 끕니다. 촛불이 다 꺼지면 축하 메시지와 함께 비밀 메시지가 공개돼요!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">🎁 🎁 🎁</div>
+
+  <!-- 나이별 테마 -->
+  <div class="section">
+    <h2>🎂 나이별 케이크 테마</h2>
+    <p>입력한 나이에 따라 다양한 케이크 테마가 적용됩니다. 각 테마마다 고유한 색상과 분위기가 있어요!</p>
+    <table class="age-table">
+      <thead>
+        <tr><th>나이</th><th>테마</th><th>분위기</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1~9세</td><td>🧁 아기 케이크</td><td>파스텔 핑크, 귀여운 느낌</td></tr>
+        <tr><td>10~19세</td><td>🎂 틴에이저</td><td>밝고 활기찬 색상</td></tr>
+        <tr><td>20~29세</td><td>🍰 청춘 케이크</td><td>트렌디한 감성</td></tr>
+        <tr><td>30~39세</td><td>🎂 어른의 케이크</td><td>세련된 톤</td></tr>
+        <tr><td>40~49세</td><td>🎂 중년의 맛</td><td>깊고 따뜻한 색감</td></tr>
+        <tr><td>50세 이상</td><td>🎂 레전드 케이크</td><td>화재경보 발령 🚨</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider">💨 💨 💨</div>
+
+  <!-- 연기 이스터에그 -->
+  <div class="section">
+    <h2>💨 B급 연기 이스터에그</h2>
+    <p>촛불을 끈 후 나오는 연기는 초 개수(나이)에 따라 달라집니다. 나이가 많을수록 연기가 많아지고, B급 감성의 코멘트가 나타나요!</p>
+    <div class="features" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+      <div class="feature-card">
+        <span class="icon">💨</span>
+        <h3>5세 이하</h3>
+        <p>"후~ 살짝 연기남"</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">💨💨</span>
+        <h3>15세 이하</h3>
+        <p>"연기 좀 나네~"</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🌫️</span>
+        <h3>25~40세</h3>
+        <p>"연기 장난 아닌데;;;"</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🚨</span>
+        <h3>60세 이상</h3>
+        <p>"화재 아닙니다 화재 아닙니다"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">❓ ❓ ❓</div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>💬 자주 묻는 질문</h2>
+    <div class="faq-item">
+      <h3>무료인가요?</h3>
+      <p>네, 완전 무료입니다! 회원가입도 필요 없어요.</p>
+    </div>
+    <div class="faq-item">
+      <h3>앱을 설치해야 하나요?</h3>
+      <p>아니요! 웹 브라우저에서 바로 사용할 수 있습니다. 링크만 열면 돼요.</p>
+    </div>
+    <div class="faq-item">
+      <h3>마이크 권한은 왜 필요한가요?</h3>
+      <p>촛불을 "후~" 불어서 끄려면 마이크가 필요해요. 마이크 데이터는 녹음되거나 저장되지 않고, 실시간으로만 사용됩니다.</p>
+    </div>
+    <div class="faq-item">
+      <h3>마이크 없이도 사용할 수 있나요?</h3>
+      <p>마이크 권한을 거부하면 촛불 끄기 체험은 어렵지만, 케이크를 보고 축하 메시지를 확인할 수는 있어요.</p>
+    </div>
+    <div class="faq-item">
+      <h3>자이로센서가 안 되는데요?</h3>
+      <p>데스크탑 브라우저에서는 자이로센서가 지원되지 않아요. 모바일(스마트폰)에서 사용하면 폰을 기울일 때 불꽃이 흔들리는 효과를 즐길 수 있습니다!</p>
+    </div>
+    <div class="faq-item">
+      <h3>개인정보는 수집되나요?</h3>
+      <p>아니요! 입력한 이름, 나이, 메시지는 URL에만 저장되고 서버에는 전송되지 않습니다. 자세한 내용은 <a href="/privacy.html" style="color: #E8722A;">개인정보처리방침</a>을 확인하세요.</p>
+    </div>
+    <div class="faq-item">
+      <h3>PC에서도 사용할 수 있나요?</h3>
+      <p>네! 다만, 최고의 경험은 모바일에서 가능해요. 마이크로 불기, 자이로센서 기울이기, 진동 피드백 등 모바일 전용 기능이 있거든요.</p>
+    </div>
+    <div class="faq-item">
+      <h3>케이크 링크는 얼마나 오래 유지되나요?</h3>
+      <p>영원히요! 링크 자체에 모든 정보가 담겨있어서 서버 상관없이 계속 사용할 수 있어요.</p>
+    </div>
+  </div>
+
+  <div class="divider">🛠️ 🛠️ 🛠️</div>
+
+  <!-- 기술 스택 -->
+  <div class="section">
+    <h2>🛠️ 만든 이야기</h2>
+    <p>이 프로젝트는 "앱 설치 없이 생일 축하를 보내는 가장 간단한 방법"을 목표로 만들었습니다.</p>
+    <p>React 18과 Vite 5로 빌드했고, 서버 없이 GitHub Pages에서 무료로 호스팅하고 있어요. 모든 데이터는 URL 해시에 인코딩되어 있어서 서버가 필요 없는 완전한 서버리스 구조입니다.</p>
+    <p>Web Audio API로 마이크 입력을 실시간 분석하고, DeviceOrientation API로 자이로센서 데이터를 받아 불꽃과 연기의 움직임에 반영합니다.</p>
+    <p>2026년 디자인 트렌드인 "안티 AI 퍼펙션"을 반영해서, 일부러 손으로 그린 듯한 삐뚤빼뚤한 테두리, 아날로그 종이 질감, 빈티지 스탬프 스타일 등 따뜻한 레트로 감성을 담았습니다.</p>
+    <p>오픈소스 프로젝트로 GitHub에서 소스 코드를 확인하실 수 있습니다.</p>
+  </div>
+
+  <!-- CTA 반복 -->
+  <div class="hero" style="padding: 40px 20px 60px;">
+    <div class="stamp">100% 무료 🎉</div>
+    <h2 style="font-size: 28px; color: #E8722A; margin-bottom: 16px;">지금 바로 케이크 보내기!</h2>
+    <p style="font-size: 19px; color: #6B5344; margin-bottom: 24px;">3초면 만들고, 링크 보내면 끝!</p>
+    <a href="/birthday-cake/" class="cta-btn">🎂 케이크 만들러 가기</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>🎂 촛불 끄셈 ㅋㅋ &copy; 2026</p>
+    <div class="footer-links">
+      <a href="/birthday-cake/">케이크 만들기</a>
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="https://github.com/Mighty0109/birthday-cake" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
 </body>
 </html>
